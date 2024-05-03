@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onClick = excDB()>apiTest</button>
+    <input type = 'checkbox' id = 'bicep' onclick = checkTest(1)>
+    <input type = 'checkbox' id = 'ye' onclick = checkTest(2)>
+    <script>
+        async function excDB(){
+            const url = 'https://exercisedb.p.rapidapi.com/exercises/bodyPart/enum:back%20Ccardio?limit=100';
+            const options = {
+	            method: 'GET',
+	            headers: {
+		            'X-RapidAPI-Key': '883b2eb2cfmsh653f0ac8e3065dap1ed5f8jsn2d6a69191c55',
+		            'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+	            }
+            }
+
+            try {
+	            const response = await fetch(url, options);
+	            const result = await response.text();
+	            console.log(result);
+            } catch (error) {
+	            console.error(error);
+            }
+        }
+
+        async function ninjaApi(){
+            const url = 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps%2triceps&offset=20';
+            const options = {
+	        method: 'GET',
+	        headers: {
+		        'X-RapidAPI-Key': '883b2eb2cfmsh653f0ac8e3065dap1ed5f8jsn2d6a69191c55',
+		        'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
+	        }
+        };
+
+        try {
+	        const response = await fetch(url, options);
+	        const result = await response.text();
+	        console.log(result);
+        } catch (error) {
+	        console.error(error);
+        }
+    }
+
+
+        async function apiTest(){
+            const options = {
+                method: 'GET',
+                url: 'https://work-out-api1.p.rapidapi.com/search',
+                params: {Muscles: 'biceps'},
+                headers: {
+                    'X-RapidAPI-Key': '883b2eb2cfmsh653f0ac8e3065dap1ed5f8jsn2d6a69191c55',
+                    'X-RapidAPI-Host': 'work-out-api1.p.rapidapi.com'
+                }
+            };
+
+            try {
+	            const response = await axios.request(options);
+	            console.log(response.data);
+            } catch (error) {
+	            console.error(error);
+            }
+        }
+
+/*
+            const url = 'https://work-out-api1.p.rapidapi.com/search?Muscles=biceps%20triceps';
+            const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '883b2eb2cfmsh653f0ac8e3065dap1ed5f8jsn2d6a69191c55',
+		'X-RapidAPI-Host': 'work-out-api1.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+        } 
+        */
+
+        var testArray = []
+
+        function checkTest(muscle){
+            if(testArray.includes(muscle)){
+                console.log('yes')
+                var index = testArray.indexOf(muscle)
+                console.log(index)
+                testArray.splice(index, 1)
+            }
+            else{
+                console.log('no')
+                testArray.push(muscle)
+            }
+            console.log(testArray)
+        }
+
+        //TRY THIS AXIOS CODE WITH A LIST OF MUSC GROUPS Muscles: ['biceps', 'triceps']
+    </script>
+</body>
+</html>
